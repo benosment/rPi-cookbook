@@ -1,11 +1,13 @@
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
+from flask.ext.sqlalchemy import SQLAlchemy
 from contextlib import closing
 import settings
 
 app = Flask(__name__)
 app.config.from_object(settings)
+db = SQLAlchemy(app)
 
 def connect_db():
   return sqlite3.connect(app.config['DATABASE'])
@@ -64,6 +66,3 @@ def logout():
   session.pop('logged_in', None)
   flash('You were logged out')
   return redirect(url_for('show_recipes'))
-
-if __name__ == '__main__':
-  app.run()
