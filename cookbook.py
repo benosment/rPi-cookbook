@@ -9,60 +9,48 @@ app = Flask(__name__)
 app.config.from_object(settings)
 db = SQLAlchemy(app)
 
-def connect_db():
-  return sqlite3.connect(app.config['DATABASE'])
+class Recipe(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String(80), unique=True)
+  ingredients = db.Column(db.String(120))
+  # preparation_time = db.Column(db.String(20))
+  # directions = db.Column(db.String(120))
+  # num_portions = db.Column(db.Integer)
+  # source = db.Column(db.String(120))
+  # date_created = db.Column(db.String(120))
+  # date_updated = db.Column(db.String(120))
 
-def init_db():
-  with closing(connect_db()) as db:
-    with app.open_resource('schema.sql', mode='r') as f:
-      db.cursor().executescript(f.read())
-    db.commit()
+  # category/tag (many-to-one relationship)
 
-@app.before_request
-def before_request():
-  ''' connect to the db before any request '''
-  g.db = connect_db()
+  # def __init__(self, title, ingredients, preparation_time,
+  #              directions, num_portions, source, date_created,
+  #              date_updated):
+  #   self.title = title
+  #   self.ingredients = ingredients
+  #   self.preparation_time = preparation_time
+  #   self.directions = directions
+  #   self.num_portions = num_poritions
+  #   self.source = source
+  #   self.date_created = date_created
+  #   self.date_updated = date_updated
 
-@app.teardown_request
-def teardown_request(exception):
-  ''' close connection to db after request '''
-  db = getattr(g, 'db', None)
-  if db is not None:
-    db.close()
+  def __init__(self, title, ingredients):
+    self.title = title
+    self.ingredients = ingredients
+
+  def __repr__(self):
+    return 'Recipe<%s>' % self.title
+
 
 @app.route('/')
 def show_recipes():
-  cursor = g.db.execute('select title, category from recipes order by id desc')
-  entries = [dict(title=row[0], category=row[1]) for row in cursor.fetchall()]
-  return render_template('show_recipes.html', entries=entries)
+  recipes = Recipe.query.all()
+  return render_template('show_recipes.html', recipes=recipes)
 
 @app.route('/add', methods=['POST'])
-def add_entry():
-  if not session.get('logged_in'):
-    abort(401)
-  # TODO - fix
-  g.db.execute('insert into recipes (title, text) values (?, ?)',
-               [request.form['title'], request.form['text']])
-  g.db.commit()
-  flash('New entry was successfully posted')
-  return redirect(url_for('show_recipes'))
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-  error = None
-  if request.method == 'POST':
-    if request.form['username'] != app.config['USERNAME']:
-      error = 'Invalid username'
-    elif request.form['password'] != app.config['PASSWORD']:
-      error = 'Invalid password'
-    else:
-      session['logged_in'] = True
-      flash('You were logged in')
-      return redirect(url_for('show_recipes'))
-  return render_template('login.html', error=error)
-
-@app.route('/logout')
-def logout():
-  session.pop('logged_in', None)
-  flash('You were logged out')
+def add_recipe():
+  recipe = Recipe(request.form['title'], request.form['ingredients'])
+  db.session.add(recipe)
+  db.session.commit()
+  flash('New recipe was successfully posted')
   return redirect(url_for('show_recipes'))
