@@ -4,14 +4,24 @@
     <dl>
       <dt>Title:
       <dd><input type=text size=30 name=title>
+      <dt>Short Description:
+      <dd><input type=text size=30 name=short_desc>
       <dt>Ingredients:
       <dd><textarea name=ingredients rows=5 cols=40></textarea>
+      <dt>Preparation Time:
+      <dd><textarea name=preparation_time size=30></textarea>
+      <dt>Directions:
+      <dd><textarea name=directions rows=5 cols=40></textarea>
+      <dt>Number of Portions:
+      <dd><textarea name=num_portions size=30></textarea>
+      <dt>Source:
+      <dd><textarea name=source size=30></textarea>
       <dd><input type=submit value=Add>
     </dl>
   </form>
   <ul class=entries>
   {% for recipe in recipes %}
-    <li><h2>{{ recipe.title }}</h2>{{ recipe.ingredients }}
+    <li><h2>{{ recipe.title }}</h2>{{ recipe.short_desc }}
   {% else %}
     <li><em>No recipes yet.</em>
   {% endfor %}

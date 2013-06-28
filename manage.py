@@ -1,5 +1,7 @@
 from cookbook import db, app
 import sys
+import os
+import settings
 
 def usage():
   print """manage.py - provides management options for Flask app
@@ -14,8 +16,11 @@ if __name__ == '__main__':
   #  - initdb
   #  - dbshell
   #  - start
+  #  - push TODO (send to rPi)
   if len(sys.argv) == 2:
     if sys.argv[1] == 'initdb':
+      basedir = os.path.abspath(os.path.dirname(__file__))
+      os.remove(os.path.join(basedir, 'cookbook.db'))
       db.create_all()
     elif sys.argv[1] == 'dbshell':
       pass
