@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>{{ recipe.title }}</h2>
+<i>{{ recipe.short_desc }}</i>
+<br/>
+<br/>
+Ingredients:
+<ul class=entries>
+  {% for ingredient in recipe.ingredients.split('-') %}
+  <li> {{ ingredient }}
+  {% endfor %}
+</ul>
+<br/>
+<br/>
+Directions:
+<ul class=entries>
+  {% for direction in recipe.directions.split('.') %}
+  <li> {{ direction }}
+  {% endfor %}
+</ul>
+
+
+
+<br><br> Preparation time: {{recipe.preparation_time}}
+
+<br><br>Number of Portions: {{recipe.num_portions}}
+
+<br><br> Source: {{recipe.source}}
+
+<br><br> Date created: {{recipe.date_created}}
+
+<br><br> Date modified: {{recipe.date_modified}}
+{% endblock %}

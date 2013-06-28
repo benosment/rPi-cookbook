@@ -5,7 +5,7 @@ import settings
 
 def usage():
   print """manage.py - provides management options for Flask app
-              initdb - initial database (and bootstrap?)
+              initdb - initial database
               dbshell - shell for db 
               start - start the server
         """
@@ -17,6 +17,7 @@ if __name__ == '__main__':
   #  - dbshell
   #  - start
   #  - push TODO (send to rPi)
+  #  - bootstrap TODO (add some basic recipes)
   if len(sys.argv) == 2:
     if sys.argv[1] == 'initdb':
       basedir = os.path.abspath(os.path.dirname(__file__))

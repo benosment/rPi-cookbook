@@ -65,4 +65,7 @@ def add_recipe():
   flash('New recipe was successfully posted')
   return redirect(url_for('show_recipes'))
 
-## TODO -- need a show_recipe (shows all details
+@app.route('/recipe/<int:id>')
+def show_recipe(id):
+  recipe = Recipe.query.filter_by(id=id).first()
+  return render_template('show_recipe.html', recipe=recipe)

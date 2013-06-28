@@ -21,7 +21,7 @@
   </form>
   <ul class=entries>
   {% for recipe in recipes %}
-    <li><h2>{{ recipe.title }}</h2>{{ recipe.short_desc }}
+    <li><h2><a href="{{ url_for('show_recipe', id=recipe.id) }}">{{ recipe.title }}</a></h2>{{ recipe.short_desc }}
   {% else %}
     <li><em>No recipes yet.</em>
   {% endfor %}
