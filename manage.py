@@ -1,7 +1,6 @@
 from cookbook import db, app
 import sys
 import os
-import settings
 
 def usage():
   print """manage.py - provides management options for Flask app

@@ -1,8 +1,5 @@
-import sqlite3
-from flask import Flask, request, session, g, redirect, url_for, \
-    abort, render_template, flash
+from flask import Flask, request, redirect, url_for, render_template, flash
 from flask.ext.sqlalchemy import SQLAlchemy
-from contextlib import closing
 import settings
 import time
 
