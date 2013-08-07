@@ -5,8 +5,9 @@ Flask-based cookbook for use with Raspberry Pi
 
 
 To install:
-  $ sudo pip install Flask
-  $ sudo pip install Flask-SQLAlchemy 
+
+    $ sudo pip install Flask
+    $ sudo pip install Flask-SQLAlchemy
 
 TODO
 ----

@@ -35,3 +35,6 @@ nosetests.xml
 .pydevproject
 
 *~
+
+# ignore pushing images
+resources/*
