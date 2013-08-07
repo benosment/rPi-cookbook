@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, flash
+from flask import Flask, request, redirect, url_for, render_template, flash, send_from_directory
 from flask.ext.sqlalchemy import SQLAlchemy
 import settings
 import time
@@ -18,11 +18,12 @@ class Recipe(db.Model):
   source = db.Column(db.String(120))
   date_created = db.Column(db.String(120))
   date_updated = db.Column(db.String(120))
+  img_link = db.Column(db.String(120))
   # category/tag (many-to-one relationship)
 
   def __init__(self, title, short_desc, ingredients, 
                preparation_time, directions, num_portions, 
-               source):
+               source, img_link):
     self.title = title
     self.short_desc = short_desc
     self.ingredients = ingredients
@@ -32,6 +33,7 @@ class Recipe(db.Model):
     self.source = source
     self.date_created = time.ctime()
     self.date_updated = time.ctime()
+    self.img_link = img_link
     # TODO notes
     # TODO pairs with
     # TODO possible sides
@@ -55,6 +57,7 @@ def add_recipe():
            directions=request.form['directions'],
            num_portions=request.form['num_portions'],
            source=request.form['source'],
+           img_link=request.form['img_link'],
            )
   recipe = Recipe(**d)
   db.session.add(recipe)
@@ -66,3 +69,7 @@ def add_recipe():
 def show_recipe(id):
   recipe = Recipe.query.filter_by(id=id).first()
   return render_template('show_recipe.html', recipe=recipe)
+
+@app.route('/images/<string:name>')
+def images(name):
+  return send_from_directory("/home/ben/Dropbox/Code/Python/rPi-cookbook/resources/", name)

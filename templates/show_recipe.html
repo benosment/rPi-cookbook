@@ -4,6 +4,9 @@
 <i>{{ recipe.short_desc }}</i>
 <br/>
 <br/>
+<img src="{{ url_for('images', name='grilled_mahi_with_mango_avocado_salsa.jpg' ) }}"/>
+<br/>
+<br/>
 Ingredients:
 <ul class=entries>
   {% for ingredient in recipe.ingredients.split('-') %}

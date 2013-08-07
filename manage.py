@@ -7,6 +7,7 @@ def usage():
               initdb - initial database
               dbshell - shell for db 
               start - start the server
+              deploy - kill existing server, copy files, start server
         """
   sys.exit(-1)
 
@@ -26,6 +27,8 @@ if __name__ == '__main__':
       pass
     elif sys.argv[1] == 'start':
       app.run()
+    elif sys.argv[1] == 'deploy':
+      pass
     else:
       usage()
   else:
