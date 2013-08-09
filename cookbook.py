@@ -70,6 +70,6 @@ def show_recipe(id):
   recipe = Recipe.query.filter_by(id=id).first()
   return render_template('show_recipe.html', recipe=recipe)
 
-@app.route('/images/<string:name>')
+@app.route('/static/images/<string:name>')
 def images(name):
-  return send_from_directory("/home/ben/Dropbox/Code/Python/rPi-cookbook/resources/", name)
+  return send_from_directory("static/images/", filename=name)

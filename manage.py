@@ -4,7 +4,7 @@ import os
 
 def usage():
   print """manage.py - provides management options for Flask app
-              initdb - initial database
+              initdb - initialize database
               dbshell - shell for db 
               start - start the server
               deploy - kill existing server, copy files, start server

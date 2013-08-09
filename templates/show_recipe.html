@@ -4,7 +4,7 @@
 <i>{{ recipe.short_desc }}</i>
 <br/>
 <br/>
-<img src="{{ url_for('images', name='grilled_mahi_with_mango_avocado_salsa.jpg' ) }}"/>
+<img class="center"; src="{{ url_for('images', name=recipe.img_link ) }}" height="550" width="550"/>
 <br/>
 <br/>
 Ingredients:
@@ -21,7 +21,6 @@ Directions:
   <li> {{ direction }}
   {% endfor %}
 </ol>
-
 
 
 <br><br> Preparation time: {{recipe.preparation_time}}
