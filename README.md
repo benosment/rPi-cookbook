@@ -11,12 +11,12 @@ To install:
 
 TODO
 ----
- - add images to show_recipe.html
  - add images to index page (need some way to scale the images down? )
  - move recipes to json format
  - add an option to manage.py to add all recipes 
  - move manage.py to argparse
  - add unit tests (mock?)
+ - create a blank json recipe?
  - add 'push (send to rPi)' to manage.py
    - should find the rPi's IP address
    - ssh in
