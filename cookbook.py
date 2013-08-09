@@ -1,3 +1,9 @@
+## Ben Osment
+## Fri Aug  9 12:02:00 EDT 2013
+## cookbook.py
+"""
+Main flask app
+"""
 from flask import Flask, request, redirect, url_for, render_template, flash, send_from_directory
 from flask.ext.sqlalchemy import SQLAlchemy
 import settings
@@ -21,19 +27,17 @@ class Recipe(db.Model):
   img_link = db.Column(db.String(120))
   # category/tag (many-to-one relationship)
 
-  def __init__(self, title, short_desc, ingredients, 
-               preparation_time, directions, num_portions, 
-               source, img_link):
-    self.title = title
-    self.short_desc = short_desc
-    self.ingredients = ingredients
-    self.preparation_time = preparation_time
-    self.directions = directions
-    self.num_portions = num_portions
-    self.source = source
+  def __init__(self, param_dict):
+    self.title = param_dict['title']
+    self.short_desc = param_dict['short_desc']
+    self.ingredients = "\n".join(param_dict['ingredients'])
+    self.preparation_time = param_dict['preparation_time']
+    self.directions = "\n".join(param_dict['directions'])
+    self.num_portions = param_dict['num_portions']
+    self.source = param_dict['source']
     self.date_created = time.ctime()
     self.date_updated = time.ctime()
-    self.img_link = img_link
+    self.img_link = param_dict['img_link']
     # TODO notes
     # TODO pairs with
     # TODO possible sides
@@ -59,7 +63,7 @@ def add_recipe():
            source=request.form['source'],
            img_link=request.form['img_link'],
            )
-  recipe = Recipe(**d)
+  recipe = Recipe(d)
   db.session.add(recipe)
   db.session.commit()
   flash('New recipe was successfully posted')

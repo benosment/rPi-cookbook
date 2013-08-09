@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
+<br/>
 <h2>{{ recipe.title }}</h2>
+<br/>
 <i>{{ recipe.short_desc }}</i>
 <br/>
 <br/>
@@ -9,7 +11,7 @@
 <br/>
 Ingredients:
 <ul class=entries>
-  {% for ingredient in recipe.ingredients.split('-') %}
+  {% for ingredient in recipe.ingredients.split('\n') %}
   <li> {{ ingredient }}
   {% endfor %}
 </ul>
@@ -17,19 +19,26 @@ Ingredients:
 <br/>
 Directions:
 <ol class=entries>
-  {% for direction in recipe.directions.split('.') %}
+  {% for direction in recipe.directions.split('\n') %}
   <li> {{ direction }}
   {% endfor %}
 </ol>
 
 
+{% if recipe.preparation_time %}}
 <br><br> Preparation time: {{recipe.preparation_time}}
+{% endif %}
 
+{% if recipe.num_portions %}}
 <br><br>Number of Portions: {{recipe.num_portions}}
+{% endif %}
 
 <br><br> Source: {{recipe.source}}
 
 <br><br> Date created: {{recipe.date_created}}
 
+{% if recipe.date_modified %}}
 <br><br> Date modified: {{recipe.date_modified}}
+{% endif %}
+
 {% endblock %}
