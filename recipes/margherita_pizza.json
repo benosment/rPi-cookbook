@@ -1,0 +1,30 @@
+{
+    "directions":[
+        "Preheat your oven to its highest tempature (500, I think 550 had an issue)",
+        "Spring a rimmed baking sheet (9x13) with cormeal, set aside",
+        "In a small bowl, stir togehter tomatoes, a couple pinches of salt, a pinch of red pepper flags and the minced garlic. Tast and adjust seasonings; a few drops of vinegar or a pinch of sugar can sometimes help bring out the best in processed tomatoes",
+        "Stretch your dough out haphazardly to fill your prepared backing sheet -- do not worry about making it perfectly rectangular or evenly flat. Pinch together any holes that form.",
+        "Spread dough with tomatoes, leaving a small margin at edges, then mozzarella.",
+        "Bake pizza for 7 to 11 minutes until bubbly and a bit borwn on top",
+        "Spring with basil and Parmesan or Romano, slice into squares right in the pan"
+    ],
+    "img_link":"margherita_pizza.jpg",
+    "ingredients":[
+        "Cornmeal, for sprinkling",
+        "1/4 cup pureed and strained tomates",
+        "salt",
+        "Red pepper flakes",
+        "1 small garlic glove, minced",
+        "Few drops red wine vinegar (optional)",
+        "Pinch of sugar (optional)",
+        "One 3/4 bound pizza dough, ready to go (see other recipes)",
+        "4 to 5 ounces mozzarella, graded, torn or very thinly sliced",
+        "Few fresh basil leaves, torn into bits",
+        "Handful finely grated Parmesan or Romano to finish"
+    ],
+    "num_portions":2,
+    "preparation_time":"About 1 hour and 15 miutes",
+    "short_desc":"Solid, fast pizza. Can be made in  1 hour (including dough)",
+    "source":"Deb, from Smitten Kitchen pg. 106",
+    "title":"Everyday Margherita Pizza"
+}

@@ -12,7 +12,7 @@ To install:
 TODO
 ----
  - add images to index page (need some way to scale the images down? )
- - move recipes to json format
+ - create a hRecipe -> json utility for recipes
  - add an option to manage.py to add all recipes 
  - move manage.py to argparse
  - add unit tests (mock?)

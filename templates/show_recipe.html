@@ -6,7 +6,7 @@
 <i>{{ recipe.short_desc }}</i>
 <br/>
 <br/>
-<img class="center"; src="{{ url_for('images', name=recipe.img_link ) }}" height="550" width="550"/>
+<img class="center"; src="{{ url_for('images', name=recipe.img_link ) }}" height="612" width="459"/>
 <br/>
 <br/>
 Ingredients:
@@ -25,11 +25,11 @@ Directions:
 </ol>
 
 
-{% if recipe.preparation_time %}}
+{% if recipe.preparation_time %}
 <br><br> Preparation time: {{recipe.preparation_time}}
 {% endif %}
 
-{% if recipe.num_portions %}}
+{% if recipe.num_portions %}
 <br><br>Number of Portions: {{recipe.num_portions}}
 {% endif %}
 
@@ -37,7 +37,7 @@ Directions:
 
 <br><br> Date created: {{recipe.date_created}}
 
-{% if recipe.date_modified %}}
+{% if recipe.date_modified %}
 <br><br> Date modified: {{recipe.date_modified}}
 {% endif %}
 
