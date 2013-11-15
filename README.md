@@ -30,3 +30,5 @@ TODO
  - add full-text search
  - display by categories (breakfast, sides, fish), maybe this should
    be tags?
+ - pull recipes from websites like BA
+ - handle unicode properly
