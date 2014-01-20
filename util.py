@@ -9,6 +9,9 @@ import os
 import json
 from cookbook import Recipe, db
 
+class InvalidRecipe(Exception):
+    pass
+    
 def json_to_recipe(json_file):
   # read the json file in as a string
   with open(json_file, 'r') as f:
@@ -22,7 +25,7 @@ def json_to_recipe(json_file):
     db.session.commit()
   except:
     print "Error processing: %s file" % json_file
-    raise 
+    raise InvalidRecipe(json_file)
   
 def populate_database(directory):
   """ given a directory, add all json format recipes to a database """

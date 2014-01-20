@@ -69,9 +69,9 @@ def add_recipe():
   flash('New recipe was successfully posted')
   return redirect(url_for('show_recipes'))
 
-@app.route('/recipe/<int:id>')
-def show_recipe(id):
-  recipe = Recipe.query.filter_by(id=id).first()
+@app.route('/recipe/<string:title>')
+def show_recipe(title):
+  recipe = Recipe.query.filter_by(title=title).first()
   return render_template('show_recipe.html', recipe=recipe)
 
 @app.route('/static/images/<string:name>')

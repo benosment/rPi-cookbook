@@ -6,7 +6,9 @@
 <i>{{ recipe.short_desc }}</i>
 <br/>
 <br/>
+{% if recipe.img_link %}
 <img class="center"; src="{{ url_for('images', name=recipe.img_link ) }}" height="612" width="459"/>
+{% endif %}
 <br/>
 <br/>
 Ingredients:

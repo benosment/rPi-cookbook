@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 from cookbook import db, app
 import sys
 import os
@@ -25,6 +27,11 @@ if __name__ == '__main__':
       os.remove(os.path.join(base_dir, 'cookbook.db'))
       # recreate tables
       db.create_all()
+      # form path to recipes directory
+      recipes_dir = os.path.join(base_dir, 'recipes')
+      # populate_database with json recipes
+      util.populate_database(recipes_dir)
+    elif sys.argv[1] == 'refresh':
       # form path to recipes directory
       recipes_dir = os.path.join(base_dir, 'recipes')
       # populate_database with json recipes
