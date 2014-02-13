@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<br/>
+<h2>Add recipe</h2>
+<form action="{{ url_for('add_recipe') }}" method=post class=add-entry>
+  <dl>
+    <dt>Title:
+    <dd><input type=text size=30 name=title>
+    <dt>Short Description:
+    <dd><textarea name=short_desc rows=5 cols=40></textarea>
+    <dt>Ingredients:
+    <dd><textarea name=ingredients rows=5 cols=40></textarea>
+    <dt>Directions:
+    <dd><textarea name=directions rows=5 cols=40></textarea>
+    <dt>Preparation Time:
+    <dd><input type=text size=30 name=preparation_time>
+    <dt>Number of Portions:
+    <dd><input type=text size=30 name=num_portions>
+    <dt>Source:
+    <dd><input type=text size=30 name=source>
+    <dt>Image:
+    <dd><input type=text size=30 name=img_link>
+    <dd><input type=submit value=Submit>
+  </dl>
+</form>
+{% endblock %}

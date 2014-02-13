@@ -11,10 +11,13 @@ To install:
 
 TODO
 ----
- - move add recipe to it's own page 
- - add short names
-   -> use recipe/orecchiette-carbonara-with-charred-brussels-sprouts instead
-      of recipe/7
+ - escape the title
+   - add title-escape, use title-escape for website
+   - ' ' -> '-'
+   - '/' -> '_'
+ - need to fix directions, steps for new recipes
+
+
  - add images to index page (need some way to scale the images down? )
  - create a hRecipe -> json utility for recipes
  - move manage.py to argparse

@@ -8,6 +8,7 @@ from flask import Flask, request, redirect, url_for, render_template, flash, sen
 from flask.ext.sqlalchemy import SQLAlchemy
 import settings
 import time
+import json
 
 app = Flask(__name__)
 app.config.from_object(settings)
@@ -28,6 +29,7 @@ class Recipe(db.Model):
   # category/tag (many-to-one relationship)
 
   def __init__(self, param_dict):
+    self.d = param_dict
     self.title = param_dict['title']
     self.short_desc = param_dict['short_desc']
     self.ingredients = "\n".join(param_dict['ingredients'])
@@ -42,6 +44,18 @@ class Recipe(db.Model):
     # TODO pairs with
     # TODO possible sides
 
+
+  def store_json(self):
+    filename = self.title
+    filename = filename.lower()
+    filename = filename.replace(' ', '_')
+    filename = filename.replace('-', '_')
+    filename = filename.replace('/', "")
+    filename = 'recipes/' + filename + ".json"
+    with open(filename, 'w') as f:
+        f.write(json.dumps(self.d, indent=4, separators=(',', ': ')))
+    
+
   def __repr__(self):
     return 'Recipe<%s>' % self.title
 
@@ -51,22 +65,26 @@ def show_recipes():
   recipes = Recipe.query.all()
   return render_template('show_recipes.html', recipes=recipes)
 
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['POST', 'GET'])
 def add_recipe():
-  # group together all the form attributes 
-  d = dict(title=request.form['title'],
-           short_desc=request.form['short_desc'],
-           ingredients=request.form['ingredients'],
-           preparation_time=request.form['preparation_time'],
-           directions=request.form['directions'],
-           num_portions=request.form['num_portions'],
-           source=request.form['source'],
-           img_link=request.form['img_link'],
+  if request.method == 'GET':
+    return render_template('add_recipe.html')
+  elif request.method == 'POST':    
+    # group together all the form attributes 
+    d = dict(title=request.form['title'],
+             short_desc=request.form['short_desc'],
+             ingredients=request.form['ingredients'],
+             preparation_time=request.form['preparation_time'],
+             directions=request.form['directions'],
+             num_portions=request.form['num_portions'],
+             source=request.form['source'],
+             img_link=request.form['img_link'],
            )
-  recipe = Recipe(d)
-  db.session.add(recipe)
-  db.session.commit()
-  flash('New recipe was successfully posted')
+    recipe = Recipe(d)
+    recipe.store_json()
+    db.session.add(recipe)
+    db.session.commit()
+    flash("New recipe was successfully posted")
   return redirect(url_for('show_recipes'))
 
 @app.route('/recipe/<string:title>')
